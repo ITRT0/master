@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.security.InvalidParameterException;
+
 public class LetterGradeTest {
 	private LetterGrade lgrade;
 	final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -34,15 +36,11 @@ public class LetterGradeTest {
 		assertEquals(lgrade.letterGrade(59,59),'F');
 	}
 	
-	@Test
-	public void testInvalidScore() {
-		assertEquals(lgrade.letterGrade(-1,-1),'X');
-		assertEquals(lgrade.letterGrade(101,101),'X');	
-	}
-
-	@Test(expected = AssertionError.class)
+	@Test(expected = InvalidParameterException.class)
 	public void testInvalidInput() {
-//		assertEquals(lgrade.letterGrade('a', 101),'X');	
-		assertEquals(lgrade.letterGrade(101,'a'),'X');	
+		assertEquals(lgrade.letterGrade(120, 90),'X');	
+		assertEquals(lgrade.letterGrade(1,-50),'X');	
+		assertEquals(lgrade.letterGrade(-10,50),'X');	
+		assertEquals(lgrade.letterGrade(10,500),'X');	
 	}
 }
