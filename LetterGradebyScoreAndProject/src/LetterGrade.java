@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.io.InputStreamReader;
 /*
  * compute the score and then covert it to a letter grade
@@ -25,7 +26,7 @@ public class LetterGrade {
 			lg.projectScore = Integer.parseInt(br.readLine());	
 			
 			char grade = lg.letterGrade(lg.examScore, lg.projectScore);
-//	        System.out.println("The grade of is " + grade);	        
+	        System.out.println("The grade of is " + grade);	        
 		} catch (NumberFormatException ex) {
 			System.out.println("Not an integer !");
 		} catch (IOException e) {
@@ -38,9 +39,19 @@ public class LetterGrade {
 	 * This method is to calculate the letter grade with two inputs:
 	 * exam score and project score
 	 */
-	public char letterGrade(int exam, int project) {
+	public char letterGrade(int exam, int project) throws InvalidParameterException {
 		double score;
 		char grade;
+		
+		// add exception handling for invalid input parameters
+		try {
+			if((exam<0 || exam>100) || (project<0 || project >100))
+				throw new InvalidParameterException("invalid parameters");
+		} catch (Exception e) {
+			System.out.println("invalid input: out of input range!");
+			throw new InvalidParameterException("invalid parameters");
+		}
+		
 		score = exam* EXAM_SCORE_PERCENT + project* PROJECT_SCORE_PERCENT;
 		if (score <0 || score > 100)
 			grade = 'X';
