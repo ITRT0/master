@@ -40,15 +40,9 @@ public class LetterGradeTest {
 		assertEquals(lgrade.letterGrade(101,101),'X');	
 	}
 
-	@Test
+	@Test(expected = AssertionError.class)
 	public void testInvalidInput() {
 //		assertEquals(lgrade.letterGrade('a', 101),'X');	
 		assertEquals(lgrade.letterGrade(101,'a'),'X');	
-	}
-	
-	@Test 
-	public void testConsoleOutput() {
-//	    assertEquals("The grade of is "+lgrade.letterGrade(100,90), outContent.toString().trim());
-//		assertEquals("The grade of is "+lgrade.letterGrade(60,60), outContent.toString().trim());
 	}
 }

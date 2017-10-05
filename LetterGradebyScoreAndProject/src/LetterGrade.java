@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
  */
 public class LetterGrade {
 	int examScore, projectScore;
-
+	final double EXAM_SCORE_PERCENT = 0.7;     // define percentage of exam score
+	final double PROJECT_SCORE_PERCENT = 0.3;  // define percentage of project score
+	
 	public static void main(String[] args) {
 
 		LetterGrade lg = new LetterGrade();
@@ -32,10 +34,14 @@ public class LetterGrade {
 
 	}  
 
+	/*
+	 * This method is to calculate the letter grade with two inputs:
+	 * exam score and project score
+	 */
 	public char letterGrade(int exam, int project) {
 		double score;
 		char grade;
-		score = exam*0.7 + project*0.3;
+		score = exam* EXAM_SCORE_PERCENT + project* PROJECT_SCORE_PERCENT;
 		if (score <0 || score > 100)
 			grade = 'X';
 		else if (score>=90 && score <=100)
